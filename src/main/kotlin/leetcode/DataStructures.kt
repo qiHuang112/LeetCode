@@ -1,5 +1,6 @@
 package leetcode
 
+import java.lang.StringBuilder
 import java.util.*
 
 class ListNode(val `val`: Int) {
@@ -66,4 +67,49 @@ class TreeNode(var `val`: Int) {
     }
 
     override fun toString() = toArray().toString()
+
+    private fun getHigh(): Int =
+        1 + (this.left?.getHigh() ?: 0).coerceAtLeast(this.right?.getHigh() ?: 0)
+
+    private fun Int.charWidth(radix: Int = 10): Int = this.toString(radix).length
+
+    private fun getValWidth(): Int =
+        maxOf(this.`val`.charWidth(), this.left?.getValWidth() ?: 0, this.right?.getValWidth() ?: 0)
+
+    private fun String.paddingTo(w: Int, c: Char = ' '): String {
+        val target = if (w % 2 == 0) w + 1 else w
+        if (this.length >= target) return this
+        val sb = StringBuilder(this)
+        while (sb.length < target) {
+            sb.insert(0, c).append(c)
+        }
+        return sb.substring(0, target)
+    }
+
+    fun printNode(char: Char = ' ') {
+        val queue = LinkedList<TreeNode?>()
+        val high = getHigh()
+        val width = getValWidth()
+        var level = 0
+        queue.offer(this)
+        while (queue.any { it != null }) {
+            level++
+            val size = queue.size
+            for (i in 0 until size) {
+                val temp = queue.pop()
+                val blank = " " * (((1 + width / 2)) * ((1 shl (high - level + 1)) - 1))
+                val tempVal = "${temp?.`val` ?: char}".paddingTo(width)
+                if (i == 0) {
+                    print("$blank$tempVal")
+                } else {
+                    print("${blank * 2} $tempVal")
+                }
+                queue.offer(temp?.left)
+                queue.offer(temp?.right)
+            }
+            println()
+        }
+    }
+
+    operator fun String.times(n: Int) = (1..n).joinToString("") { this }
 }
