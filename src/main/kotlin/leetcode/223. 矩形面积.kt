@@ -31,7 +31,7 @@ private fun computeArea(A: Int, B: Int, C: Int, D: Int, E: Int, F: Int, G: Int, 
 /**
  * 四个数排序，并取中间两项的差值
  */
-fun calc(a: Int, b: Int, c: Int, d: Int): Int {
+private fun calc(a: Int, b: Int, c: Int, d: Int): Int {
     val arr = intArrayOf(a, b, c, d)
     Arrays.sort(arr)
     return arr[2] - arr[1]
