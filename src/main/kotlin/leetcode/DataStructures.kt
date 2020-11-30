@@ -113,3 +113,10 @@ class TreeNode(var `val`: Int) {
 
     operator fun String.times(n: Int) = (1..n).joinToString("") { this }
 }
+
+/**
+ * n叉树
+ */
+class Node(var `val`: Int) {
+    var children: List<Node?> = listOf()
+}

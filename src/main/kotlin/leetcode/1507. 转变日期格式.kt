@@ -1,6 +1,6 @@
 package leetcode
 
-/**
+/*
 给你一个字符串 date ，它的格式为 Day Month Year ，其中：
 
 Day 是集合 {"1st", "2nd", "3rd", "4th", ..., "30th", "31st"} 中的一个元素。

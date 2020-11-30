@@ -3,7 +3,7 @@ package leetcode
 import java.util.*
 import kotlin.math.*
 
-/**
+/*
 在二维平面上计算出两个由直线构成的矩形重叠后形成的总面积。
 
 示例:

@@ -3,7 +3,7 @@ package leetcode
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-/**
+/*
 求出大于或等于 N 的最小回文素数。
 
 回顾一下，如果一个数大于 1，且其因数只有 1 和它自身，那么这个数是素数。
