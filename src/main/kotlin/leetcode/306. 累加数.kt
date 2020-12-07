@@ -1,7 +1,5 @@
 package leetcode
 
-import java.lang.StringBuilder
-
 /*
 累加数是一个字符串，组成它的数字可以形成累加序列。
 
