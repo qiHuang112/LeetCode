@@ -14,6 +14,15 @@ class ListNode(val `val`: Int) {
             next = ListNode(v[index], v, index + 1)
         }
     }
+
+    fun append(node: ListNode?): ListNode {
+        var temp = this
+        while (temp.next != null) {
+            temp = temp.next!!
+        }
+        temp.next = node
+        return this
+    }
 }
 
 class TreeNode(var `val`: Int) {
