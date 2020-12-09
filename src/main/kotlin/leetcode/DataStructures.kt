@@ -3,7 +3,7 @@ package leetcode
 import java.lang.StringBuilder
 import java.util.*
 
-class ListNode(val `val`: Int) {
+class ListNode(var `val`: Int) {
     var next: ListNode? = null
     override fun toString() = "$`val` -> $next"
 
