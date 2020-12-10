@@ -34,7 +34,7 @@ private fun pondSizes(land: Array<IntArray>): IntArray {
     return res.sorted().toIntArray()
 }
 
-fun dfs(land: Array<IntArray>, i: Int, j: Int): Int {
+private fun dfs(land: Array<IntArray>, i: Int, j: Int): Int {
     if (i !in land.indices || j !in land[i].indices || land[i][j] != 0) {
         return 0
     }
