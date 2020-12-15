@@ -112,7 +112,7 @@ private fun nextPalindrome(n: Int): Int {
 /**
  * 根据index以及 长度的奇偶 唯一确定一个回文数
  */
-fun getPalindrome(index: Int, isOdd: Boolean): Int {
+private fun getPalindrome(index: Int, isOdd: Boolean): Int {
     val temp1 = if (isOdd) index.length - 1 else index.length
     val temp2 = if (isOdd) index / 10 else index
     return index * 10.0.pow(temp1).toInt() + (temp2).reverse()
