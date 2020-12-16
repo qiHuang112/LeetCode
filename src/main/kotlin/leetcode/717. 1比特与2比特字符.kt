@@ -26,11 +26,30 @@ bits[i] 总是0 或 1.
 链接：https://leetcode-cn.com/problems/1-bit-and-2-bit-characters
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+/**
+ * 末尾是1 则最后一个字符必是2bit字符
+ * 然后找最近的0出现的位置，因为0表示结束
+ */
 private fun isOneBitCharacter(bits: IntArray): Boolean {
-
+    if (bits[bits.lastIndex] == 1) {
+        return false
+    }
+    var index0 = bits.lastIndex - 1
+    while (index0 >= 0 && bits[index0] != 0) {
+        index0--
+    }
+    if (index0 >= 0) {
+        return (bits.size - index0) % 2 == 0
+    }
+    return bits.size % 2 == 1
 }
+
 
 fun main() {
     println(isOneBitCharacter(intArrayOf(1, 0, 0)))
     println(isOneBitCharacter(intArrayOf(1, 1, 1, 0)))
+    println(isOneBitCharacter(intArrayOf(1, 0, 1, 0)))
+    println(isOneBitCharacter(intArrayOf(1, 1, 1, 1, 0)))
+    println(isOneBitCharacter(intArrayOf(1, 1, 0, 1, 0)))
+    println(isOneBitCharacter(intArrayOf(1, 0, 1, 1, 0)))
 }
