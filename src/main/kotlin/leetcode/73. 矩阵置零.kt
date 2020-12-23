@@ -43,7 +43,7 @@ package leetcode
 /**
  * 空间复杂度o(m+n)
  */
-private fun setZeroes(matrix: Array<IntArray>): Unit {
+private fun setZeroes1(matrix: Array<IntArray>): Unit {
     if (matrix.isEmpty() || matrix[0].isEmpty()) return
     val x = BooleanArray(matrix.size)
     val y = BooleanArray(matrix[0].size)
@@ -67,6 +67,35 @@ private fun setZeroes(matrix: Array<IntArray>): Unit {
             for (j in matrix.indices) {
                 matrix[j][i] = 0
             }
+        }
+    }
+}
+
+/**
+ * 空间复杂度o(1)
+ */
+private fun setZeroes(matrix: Array<IntArray>): Unit {
+    for (i in matrix.indices) {
+        for (j in matrix[i].indices) {
+            if (matrix[i][j] == 0) {
+                matrix[0][j] = 0
+                matrix[i][0] = 0
+            }
+        }
+    }
+    for (i in 1..matrix.lastIndex) {
+        for (j in 1..matrix[i].lastIndex) {
+            if (matrix[0][j] == 0 || matrix[i][0] == 0) {
+                matrix[i][j] = 0
+            }
+        }
+    }
+    if (matrix[0][0] == 0) {
+        for (i in matrix.indices) {
+            matrix[i][0] = 0
+        }
+        for (i in matrix[0].indices) {
+            matrix[0][i] = 0
         }
     }
 }
