@@ -15,6 +15,16 @@ class ListNode(var `val`: Int) {
         }
     }
 
+    constructor(range: Iterable<Int>) : this(range.first()) {
+        val it = range.iterator()
+        it.next()
+        var temp = this
+        while (it.hasNext()) {
+            temp.next = ListNode(it.next())
+            temp = temp.next!!
+        }
+    }
+
     fun append(node: ListNode?): ListNode {
         var temp = this
         while (temp.next != null) {
