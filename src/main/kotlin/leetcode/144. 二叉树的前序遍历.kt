@@ -1,5 +1,7 @@
 package leetcode
 
+import java.util.*
+
 /*
 给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
 
@@ -27,7 +29,7 @@ package leetcode
 链接：https://leetcode-cn.com/problems/binary-tree-preorder-traversal
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-private fun preorderTraversal(root: TreeNode?): List<Int> {
+private fun preorderTraversal1(root: TreeNode?): List<Int> {
     val res = mutableListOf<Int>()
     dfs(root, res)
     return res
@@ -40,10 +42,27 @@ private fun dfs(root: TreeNode?, list: MutableList<Int>) {
     dfs(root.right, list)
 }
 
+/**
+ * 迭代
+ */
+private fun preorderTraversal(root: TreeNode?): List<Int> {
+    val res = LinkedList<Int>()
+    val list = LinkedList<TreeNode>()
+    root?.let(list::addLast)
+    while (list.isNotEmpty()) {
+        val node = list.removeLast()
+        res.addLast(node.`val`)
+        node.right?.let(list::addLast)
+        node.left?.let(list::addLast)
+    }
+    return res
+}
+
 fun main() {
-    println(preorderTraversal(TreeNode(1, null, 2, 3)))
+    println(preorderTraversal(TreeNode(1, null, 2, 3).also(TreeNode::printNode)))
     println(preorderTraversal(null))
-    println(preorderTraversal(TreeNode(1)))
-    println(preorderTraversal(TreeNode(1, 2)))
-    println(preorderTraversal(TreeNode(1, null, 2)))
+    println(preorderTraversal(TreeNode(1).also(TreeNode::printNode)))
+    println(preorderTraversal(TreeNode(1, 2).also(TreeNode::printNode)))
+    println(preorderTraversal(TreeNode(1, null, 2).also(TreeNode::printNode)))
+    println(preorderTraversal(TreeNode(1, 4, 3, 2).also(TreeNode::printNode)))
 }
