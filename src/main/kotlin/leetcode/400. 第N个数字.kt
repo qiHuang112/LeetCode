@@ -1,0 +1,58 @@
+package leetcode
+
+/*
+在无限的整数序列 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...中找到第 n 个数字。
+
+注意:
+n 是正数且在32位整数范围内 ( n < 231)。
+
+示例 1:
+输入:
+3
+输出:
+3
+
+示例 2:
+输入:
+11
+输出:
+0
+
+说明:
+第11个数字在序列 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... 里是0，它是10的一部分。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/nth-digit
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+private fun findNthDigit(n: Int): Int {
+    var total = 0L
+    var temp = 9L
+    var level = 1
+    var real = 0L
+    while (total + temp * level < n) {
+        total += temp * level
+        real += temp
+        temp *= 10
+        level += 1
+    }
+    val num = real + (n - total + level - 1) / level
+    val index = (n - total - 1) % level
+    return num.toString()[index.toInt()] - '0'
+}
+
+fun main() {
+//   for (i in 20..500) {
+//       println(findNthDigit(i))
+//   }
+    println(findNthDigit(1000000000))
+}
+
+/*
+1~9 9 * 1
+10~99 90 * 2
+100~999 900 * 3
+1000~9999 9000 * 4
+
+1 2 3 4 5 6 7 8 9 1 0 1 1 1 2
+ */
