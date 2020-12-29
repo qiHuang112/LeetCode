@@ -25,7 +25,7 @@ import java.lang.StringBuilder
 链接：https://leetcode-cn.com/problems/complex-number-multiplication
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-private fun complexNumberMultiply(a: String, b: String): String {
+private fun complexNumberMultiply1(a: String, b: String): String {
     val (realA, virtualA) = a.split("+")
     val (realB, virtualB) = b.split("+")
     val real = add(multiply(realA, realB), multiply(virtualA, virtualB))
@@ -85,8 +85,26 @@ private fun add(a: String, b: String): String {
     return sb.toString()
 }
 
+private fun complexNumberMultiply(a: String, b: String): String {
+    val complexA = stringToComplex(a)
+    val complexB = stringToComplex(b)
+    val real = complexA.first * complexB.first - complexA.second * complexB.second
+    val virtual = complexA.first * complexB.second + complexA.second * complexB.first
+    return "$real+${virtual}i"
+}
+
+private fun stringToComplex(s: String): Pair<Int, Int> {
+    val real: Int
+    val virtual: Int
+    s.split("+").let {
+        real = it[0].toInt()
+        virtual = it[1].substring(0, it[1].lastIndex).toInt()
+    }
+    return real to virtual
+}
+
+
 fun main() {
-    println(add("1", "-1"))
     println(complexNumberMultiply("1+1i", "1+1i"))
     println(complexNumberMultiply("1+-1i", "1+-1i"))
 }
