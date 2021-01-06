@@ -94,7 +94,25 @@ private fun calculate1(s: String): Int {
 }
 
 private fun calculate(s: String): Int {
-    TODO()
+    val stack = LinkedList<Int>()
+    var num = 0
+    var operator = '+'
+    for (c in "$s+0") {
+        if (c == ' ') continue
+        if (c.isDigit()) {
+            num = 10 * num + (c - '0')
+        } else {
+            when (operator) {
+                '+' -> stack.push(num)
+                '-' -> stack.push(-num)
+                '*' -> stack.push(stack.pop() * num)
+                '/' -> stack.push(stack.pop() / num)
+            }
+            operator = c
+            num = 0
+        }
+    }
+    return stack.sum()
 }
 
 fun main() {
