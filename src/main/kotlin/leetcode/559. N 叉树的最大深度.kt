@@ -21,18 +21,22 @@ N 叉树输入按层序遍历序列化表示，每组子节点由空值分隔（
 链接：https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+class Node559(var `val`: Int) {
+    var children: List<Node559?> = listOf()
+}
+
 /**
  * 高阶函数不跟你讲道理
  */
-private fun maxDepth(root: Node?): Int {
+private fun maxDepth(root: Node559?): Int {
     if (root == null) return 0
     return root.children.map(::maxDepth).fold(0, ::maxOf) + 1
 }
 
 fun main() {
-    println(maxDepth(Node(1).also { a ->
-        a.children = listOf(Node(3).also { b ->
-            b.children = listOf(Node(5), Node(6))
-        }, Node(2), Node(4))
+    println(maxDepth(Node559(1).also { a ->
+        a.children = listOf(Node559(3).also { b ->
+            b.children = listOf(Node559(5), Node559(6))
+        }, Node559(2), Node559(4))
     }))
 }

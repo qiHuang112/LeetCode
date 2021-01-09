@@ -36,15 +36,15 @@ Node.random 为空（null）或指向链表中的节点。
 链接：https://leetcode-cn.com/problems/copy-list-with-random-pointer
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-private class Node1(var `val`: Int) {
-    var next: Node1? = null
-    var random: Node1? = null
+private class Node138(var `val`: Int) {
+    var next: Node138? = null
+    var random: Node138? = null
 }
 
-private fun copyRandomList(node: Node1?): Node1? {
+private fun copyRandomList(node: Node138?): Node138? {
     if (node == null) return null
-    val map = mutableMapOf<Node1?, Int>()
-    val list1 = LinkedList<Node1?>()
+    val map = mutableMapOf<Node138?, Int>()
+    val list1 = LinkedList<Node138?>()
     var temp = node
     var index = 0
     while (temp != null) {
@@ -53,10 +53,10 @@ private fun copyRandomList(node: Node1?): Node1? {
         temp = temp.next
     }
 
-    val list2 = LinkedList<Node1?>()
+    val list2 = LinkedList<Node138?>()
     temp = node
     while (temp != null) {
-        list2.addLast(Node1(temp.`val`))
+        list2.addLast(Node138(temp.`val`))
         temp = temp.next
     }
     index = 0

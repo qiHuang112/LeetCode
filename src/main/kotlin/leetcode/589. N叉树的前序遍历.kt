@@ -10,13 +10,17 @@ package leetcode
 返回其前序遍历: [1,3,5,6,2,4]。
 说明: 递归法很简单，你可以使用迭代法完成此题吗?
  */
-private fun preorder(root: Node?): List<Int> {
+class Node589(var `val`: Int) {
+    var children: List<Node589?> = listOf()
+}
+
+private fun preorder(root: Node589?): List<Int> {
     val res = ArrayList<Int>()
     dfs(res, root)
     return res
 }
 
-private fun dfs(list: ArrayList<Int>, root: Node?) {
+private fun dfs(list: ArrayList<Int>, root: Node589?) {
     if (root == null) {
         return
     }
@@ -27,8 +31,9 @@ private fun dfs(list: ArrayList<Int>, root: Node?) {
 }
 
 fun main() {
-    val root = Node(1)
-    root.children = listOf(Node(3), Node(2), Node(4))
-    root.children[0]!!.children = listOf(Node(5), Node(6))
+
+    val root = Node589(1)
+    root.children = listOf(Node589(3), Node589(2), Node589(4))
+    root.children[0]!!.children = listOf(Node589(5), Node589(6))
     println(preorder(root))
 }
