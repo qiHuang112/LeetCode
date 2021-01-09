@@ -19,16 +19,19 @@ import kotlin.collections.ArrayList
 链接：https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+private class Node590(var `val`: Int) {
+    var children: List<Node590?> = listOf()
+}
 /**
  * 递归法
  */
-private fun postorder1(root: Node?): List<Int> {
+private fun postorder1(root: Node590?): List<Int> {
     val res = ArrayList<Int>()
     dfs(res, root)
     return res
 }
 
-private fun dfs(list: ArrayList<Int>, root: Node?) {
+private fun dfs(list: ArrayList<Int>, root: Node590?) {
     if (root == null) {
         return
     }
@@ -41,9 +44,9 @@ private fun dfs(list: ArrayList<Int>, root: Node?) {
 /**
  * 迭代法
  */
-private fun postorder(root: Node?): List<Int> {
+private fun postorder(root: Node590?): List<Int> {
     val res = LinkedList<Int>()
-    val stack = Stack<Node>()
+    val stack = Stack<Node590>()
     root?.let(stack::push)
     while (stack.isNotEmpty()) {
         stack.pop().let {
@@ -55,8 +58,8 @@ private fun postorder(root: Node?): List<Int> {
 }
 
 fun main() {
-    val root = Node(1)
-    root.children = listOf(Node(3), Node(2), Node(4))
-    root.children[0]!!.children = listOf(Node(5), Node(6))
+    val root = Node590(1)
+    root.children = listOf(Node590(3), Node590(2), Node590(4))
+    root.children[0]!!.children = listOf(Node590(5), Node590(6))
     println(postorder(root))
 }

@@ -10,7 +10,7 @@ package leetcode
 返回其前序遍历: [1,3,5,6,2,4]。
 说明: 递归法很简单，你可以使用迭代法完成此题吗?
  */
-class Node589(var `val`: Int) {
+private class Node589(var `val`: Int) {
     var children: List<Node589?> = listOf()
 }
 

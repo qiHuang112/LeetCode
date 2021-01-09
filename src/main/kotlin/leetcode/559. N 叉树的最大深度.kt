@@ -21,7 +21,7 @@ N 叉树输入按层序遍历序列化表示，每组子节点由空值分隔（
 链接：https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-class Node559(var `val`: Int) {
+private class Node559(var `val`: Int) {
     var children: List<Node559?> = listOf()
 }
 
