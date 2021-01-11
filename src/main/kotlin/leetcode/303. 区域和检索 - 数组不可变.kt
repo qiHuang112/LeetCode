@@ -44,7 +44,7 @@ private class NumArray1(val nums: IntArray) {
  * 初始化的时候计算一个sumArr，每次计算的时候直接sumArr[j] - sumArr[i]就好了
  * 时间复杂度为o(1)
  */
-private class NumArray(val nums: IntArray) {
+private class NumArray303(val nums: IntArray) {
 
     private val sumArr: IntArray
 
@@ -65,7 +65,7 @@ private class NumArray(val nums: IntArray) {
 
 
 fun main() {
-    NumArray(intArrayOf(-2, 0, 3, -5, 2, -1)).apply {
+    NumArray303(intArrayOf(-2, 0, 3, -5, 2, -1)).apply {
         println(sumRange(0, 2))
         println(sumRange(2, 5))
         println(sumRange(0, 5))
