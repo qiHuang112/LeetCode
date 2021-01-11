@@ -67,17 +67,46 @@ private operator fun String.times(i: Int): String {
     return (1..i).joinToString("") { this }
 }
 
-/**
- * 用栈来解
- */
 private fun decodeString(s: String): String {
-    TODO()
+    var cur = 0
+    fun dfs(index: Int): String {
+        val res = StringBuilder()
+        var i = index
+        var num = 0
+        while (i < s.length) {
+            when {
+                s[i].isDigit() -> num = num * 10 + (s[i] - '0')
+                s[i] == '[' -> {
+                    val result = dfs(i + 1)
+                    i = cur
+                    while (num > 0) {
+                        num--
+                        res.append(result)
+                    }
+                }
+                s[i] == ']' -> {
+                    cur = i
+                    return res.toString()
+                }
+                else -> res.append(s[i])
+            }
+            i++
+        }
+        return res.toString()
+    }
+    return dfs(0)
 }
 
 fun main() {
-    println(decodeString1(s = "3[a]2[bc]"))
-    println(decodeString1(s = "3[a2[c]]"))
-    println(decodeString1(s = "2[abc]3[cd]ef"))
-    println(decodeString1(s = "abc3[cd]xyz"))
-    println(decodeString1(s = "3[3[3[a]b]c]d"))
+//    println(decodeString1(s = "3[a]2[bc]"))
+//    println(decodeString1(s = "3[a2[c]]"))
+//    println(decodeString1(s = "2[abc]3[cd]ef"))
+//    println(decodeString1(s = "abc3[cd]xyz"))
+//    println(decodeString1(s = "3[3[3[a]b]c]d"))
+    println(decodeString(s = "3[a]2[bc]"))
+    println(decodeString(s = "3[a2[c]]"))
+    println(decodeString(s = "2[abc]3[cd]ef"))
+    println(decodeString(s = "abc3[cd]xyz"))
+    println(decodeString(s = "3[3[3[a]b]c]d"))
+
 }

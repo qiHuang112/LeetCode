@@ -23,7 +23,6 @@ package leetcode
  */
 /**
  * dfs超时了
- * todo
  */
 private fun canPartition1(nums: IntArray): Boolean {
     val sum = nums.sum()

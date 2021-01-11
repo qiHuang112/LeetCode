@@ -40,7 +40,7 @@ private abstract class GuessGame {
     }
 }
 
-private class Solution : GuessGame() {
+private class Solution374 : GuessGame() {
     override fun guessNumber(n: Int): Int {
         var (left, right) = 1 to n
         while (left < right) {
@@ -56,7 +56,7 @@ private class Solution : GuessGame() {
 }
 
 fun main() {
-    Solution().apply {
+    Solution374().apply {
         pick = 1
         println(guessNumber(30))
     }

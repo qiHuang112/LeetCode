@@ -61,7 +61,27 @@ private fun reverseParentheses1(s: String): String {
  * 栈
  */
 private fun reverseParentheses(s: String): String {
-    TODO()
+    var cur = 0
+    fun dfs(index: Int): String {
+        val res = StringBuilder()
+        var i = index
+        while (i < s.length) {
+            when {
+                s[i].isLetter() -> res.append(s[i])
+                s[i] == '(' -> {
+                    res.append(dfs(i + 1))
+                    i = cur
+                }
+                s[i] == ')' -> {
+                    cur = i
+                    return res.reverse().toString()
+                }
+            }
+            i++
+        }
+        return res.toString()
+    }
+    return dfs(0)
 }
 
 fun main() {

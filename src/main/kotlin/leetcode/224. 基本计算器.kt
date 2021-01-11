@@ -29,7 +29,7 @@ s 表示一个有效的表达式
 /**
  * 额外考虑乘除法的话
  */
-private fun calculate(s: String): Int {
+private fun calculate1(s: String): Int {
     val queue = LinkedList<Int>()
     var num = 0
     var index = 0
@@ -75,6 +75,53 @@ private fun calculate(s: String): Int {
         '/' -> queue.push(queue.pop() / num)
     }
     return queue.fold(0, Int::plus)
+}
+
+/**
+ * dfs
+ */
+private fun calculate(s: String): Int {
+    var cur = 0
+    fun dfs(index: Int): Int {
+        var i = index
+        val stack = LinkedList<Int>()
+        var num = 0
+        var op = '+'
+
+        fun useOperator() {
+            when (op) {
+                '+' -> stack.push(num)
+                '-' -> stack.push(-num)
+                '*' -> stack.push(stack.pop() * num)
+                '/' -> stack.push(stack.pop() / num)
+            }
+        }
+
+        while (i < s.length) {
+            when {
+                s[i] == ' ' -> Unit
+                s[i].isDigit() -> num = num * 10 + (s[i] - '0')
+                s[i] == '(' -> {
+                    num = dfs(i + 1)
+                    i = cur
+                }
+                s[i] == ')' -> {
+                    cur = i
+                    useOperator()
+                    return stack.fold(0, Int::plus)
+                }
+                else -> {
+                    useOperator()
+                    num = 0
+                    op = s[i]
+                }
+            }
+            i++
+        }
+        useOperator()
+        return stack.fold(0, Int::plus)
+    }
+    return dfs(0)
 }
 
 fun main() {
