@@ -22,7 +22,7 @@ solution.pick(1);
 链接：https://leetcode-cn.com/problems/random-pick-index
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-private class Solution(val nums: IntArray) {
+private class Solution398(val nums: IntArray) {
 
     val random = Random()
 
@@ -57,7 +57,7 @@ private class Solution(val nums: IntArray) {
 //}
 
 fun main() {
-    Solution(intArrayOf(1, 2, 3, 3, 3)).apply {
+    Solution398(intArrayOf(1, 2, 3, 3, 3)).apply {
         println(pick(3))
         println(pick(1))
     }
