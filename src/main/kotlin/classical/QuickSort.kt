@@ -1,7 +1,6 @@
 package classical
 
 import java.util.*
-import kotlin.Comparator
 
 /**
  * 经典算法 - 快速排序
@@ -58,7 +57,7 @@ fun <T : Comparable<T>> quickSort(arr: Array<T>, left: Int = 0, right: Int = arr
 fun main() {
     repeat(5) {
         val random = Random()
-        val nums = Array(11) {
+        val nums = Array(random.nextInt(12) + 8) {
             random.nextInt(100)
         }
         println(nums.contentToString())
